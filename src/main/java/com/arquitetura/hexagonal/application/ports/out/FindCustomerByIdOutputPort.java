@@ -6,5 +6,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface FindCustomerByIdOutputPort {
-    public Optional<Customer> find(UUID id);
+    Optional<Customer> find(UUID id);
 }

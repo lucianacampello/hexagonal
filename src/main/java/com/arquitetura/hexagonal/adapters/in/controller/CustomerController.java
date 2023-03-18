@@ -7,7 +7,7 @@ import com.arquitetura.hexagonal.application.ports.in.DeleteCustomerByIdInputPor
 import com.arquitetura.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import com.arquitetura.hexagonal.application.ports.in.InsertCustomerInputPortImp;
 import com.arquitetura.hexagonal.application.ports.in.UpdateCustomerInputPort;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +17,17 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/customers")
-@RequiredArgsConstructor
 public class CustomerController {
-    private final InsertCustomerInputPortImp insertCustomerInputPortImp;
-    private final FindCustomerByIdInputPort findCustomerByIdInputPort;
-    private final UpdateCustomerInputPort updateCustomerInputPort;
-    private final DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
-    private final CustomerControllerMapper mapper;
+    @Autowired
+    private InsertCustomerInputPortImp insertCustomerInputPortImp;
+    @Autowired
+    private FindCustomerByIdInputPort findCustomerByIdInputPort;
+    @Autowired
+    private UpdateCustomerInputPort updateCustomerInputPort;
+    @Autowired
+    private DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
+    @Autowired
+    private CustomerControllerMapper mapper;
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CustomerResquest request) {
